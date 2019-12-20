@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Zedstar16\OnlineTime;
 
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerPreLoginEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -25,7 +25,7 @@ class Main extends PluginBase implements Listener
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 
-    public function onJoin(PlayerJoinEvent $event)
+    public function onJoin(PlayerPreLoginEvent $event)
     {
         if ($this->db->hasTime($event->getPlayer()) === false) {
             $this->db->registerTime($event->getPlayer());
